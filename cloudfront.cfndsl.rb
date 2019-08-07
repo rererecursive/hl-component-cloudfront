@@ -90,7 +90,10 @@ CloudFormation do
     Mapping('aliases', map)
     distribution_config[:Aliases] = FnSplit(',', FnFindInMap('aliases', Ref('AliasMap'), 'records'))
   elsif (defined? aliases) && (aliases.any?)
-    distribution_config[:Aliases] = aliases.map { |a| FnSub(a) }
+    distribution_config[:Aliases] = aliases.map { |a|
+      puts "MAP: #{a}"
+      FnSub(a)
+    }
   end
 
   CloudFront_Distribution(:Distribution) {
