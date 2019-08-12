@@ -93,9 +93,11 @@ CloudFormation do
     distribution_config[:Aliases] = aliases.map { |a| FnSub(a) }
   end
 
-  CloudFront_Distribution(:Distribution) {
-    DistributionConfig distribution_config
-    Tags tags
+  Resource('Distribution') {
+    Type 'Custom::QuickDistribution'
+    Property('ServiceToken', FnGetAtt('CloudFrontCR', 'Arn'))
+    Property('DistributionConfig', distribution_config)
+    Property('Tags', tags)
   }
 
   dns_records.each_with_index do |dns, index|

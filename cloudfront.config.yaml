@@ -59,3 +59,48 @@ behaviours:
 # logs:
 #   bucket: mybucket.com
 #   prefix: mysite
+
+cloudfront_functions:
+  functions:
+    CloudFrontCR:
+      handler: lambda_handler.handler
+      runtime: python3.6
+      code: CloudFrontCR/lambda_handler.py
+      timeout: 30
+      log_retention: 7
+      role: CloudFrontCRRole
+
+  roles:
+    CloudFrontCRRole:
+      policies_inline:
+        - logs
+        - cloudfront
+        - events
+
+  custom_policies:
+    logs:
+      action:
+        - logs:PutLogEvents
+        - logs:DescribeLogStreams
+        - logs:DescribeLogGroups
+        - logs:CreateLogStream
+        - logs:CreateLogGroup
+      resource:
+        - '*'
+    cloudfront:
+      action:
+        - cloudfront:GetDistribution
+        - cloudfront:GetDistributionConfig
+        - cloudfront:CreateDistribution
+        - cloudfront:UpdateDistribution
+        - cloudfront:DeleteDistribution
+        - cloudfront:TagResource
+      resource:
+        - '*'
+    events:
+      action:
+        - events:PutRule
+        - events:PutTargets
+        - events:ListTargetsByRule
+      resource:
+        - '*'

@@ -1,0 +1,424 @@
+{
+  "Aliases": {
+    "Required": false,
+    "Type": "StringList"
+  },
+  "CallerReference": {
+    "Required": true,
+    "Type": "Random"
+  },
+  "DefaultRootObject": {
+    "Required": false,
+    "Type": "String"
+  },
+  "Origins": {
+    "Required": true,
+    "Type": "ObjectList",
+    "ObjectFields": {
+      "Id": {
+        "Required": true,
+        "Type": "String"
+      },
+      "DomainName": {
+        "Required": true,
+        "Type": "String"
+      },
+      "OriginPath": {
+        "Required": false,
+        "Type": "String"
+      },
+      "CustomHeaders": {
+        "Required": false,
+        "Type": "ObjectList",
+        "ObjectFields": {
+          "HeaderName": {
+            "Required": true,
+            "Type": "String"
+          },
+          "HeaderValue": {
+            "Required": true,
+            "Type": "String"
+          }
+        }
+      },
+      "S3OriginConfig": {
+        "Required": false,
+        "Type": "Object",
+        "ObjectFields": {
+          "OriginAccessIdentity": {
+            "Required": true,
+            "Type": "String"
+          }
+        }
+      },
+      "CustomOriginConfig": {
+        "Required": false,
+        "Type": "Object",
+        "ObjectFields": {
+          "HTTPPort": {
+            "Required": true,
+            "Type": "Integer"
+          },
+          "HTTPSPort": {
+            "Required": true,
+            "Type": "Integer"
+          },
+          "OriginProtocolPolicy": {
+            "Required": true,
+            "Type": "String"
+          },
+          "OriginSslProtocols": {
+            "Required": false,
+            "Type": "StringList"
+          },
+          "OriginReadTimeout": {
+            "Required": false,
+            "Type": "Integer"
+          },
+          "OriginKeepaliveTimeout": {
+            "Required": false,
+            "Type": "Integer"
+          }
+        }
+      }
+    }
+  },
+  "OriginGroups": {
+    "Required": false,
+    "Type": "ObjectList",
+    "ObjectFields": {
+      "Id": {
+        "Required": true,
+        "Type": "Integer"
+      },
+      "FailoverCriteria": {
+        "Required": true,
+        "Type": "String",
+        "ObjectFields": {
+          "StatusCodes": {
+            "Required": true,
+            "Type": "IntegerList"
+          }
+        }
+      },
+      "Members": {
+        "Required": true,
+        "Type": "StringList"
+      }
+    }
+  },
+  "DefaultCacheBehavior": {
+    "Required": true,
+    "Type": "Object",
+    "ObjectFields": {
+      "TargetOriginId": {
+        "Required": true,
+        "Type": "String"
+      },
+      "ForwardedValues": {
+        "Required": true,
+        "Type": "Object",
+        "ObjectFields": {
+          "QueryString": {
+            "Required": true,
+            "Type": "Boolean"
+          },
+          "Cookies": {
+            "Required": true,
+            "Type": "Object",
+            "ObjectFields": {
+              "Forward": {
+                "Required": true,
+                "Type": "String"
+              },
+              "WhitelistedNames": {
+                "Required": false,
+                "Type": "StringList"
+              }
+            }
+          },
+          "Headers": {
+            "Required": false,
+            "Type": "StringList"
+          },
+          "QueryStringCacheKeys": {
+            "Required": false,
+            "Type": "StringList"
+          }
+        }
+      },
+      "TrustedSigners": {
+        "Required": true,
+        "Type": "StringList"
+      },
+      "ViewerProtocolPolicy": {
+        "Required": true,
+        "Type": "String"
+      },
+      "MinTTL": {
+        "Required": true,
+        "Type": "Integer"
+      },
+      "AllowedMethods": {
+        "Required": false,
+        "Type": "StringList"
+      },
+      "CachedMethods": {
+        "Required": false,
+        "Type": "StringList"
+      },
+      "SmoothStreaming": {
+        "Required": false,
+        "Type": "Boolean"
+      },
+      "DefaultTTL": {
+        "Required": false,
+        "Type": "Integer"
+      },
+      "MaxTTL": {
+        "Required": false,
+        "Type": "Integer"
+      },
+      "Compress": {
+        "Required": false,
+        "Type": "Boolean"
+      },
+      "LambdaFunctionAssociations": {
+        "Required": false,
+        "Type": "ObjectList",
+        "ObjectFields": {
+          "LambdaFunctionARN": {
+            "Required": true,
+            "Type": "String"
+          },
+          "EventType": {
+            "Required": true,
+            "Type": "String"
+          },
+          "IncludeBody": {
+            "Required": false,
+            "Type": "Boolean"
+          }
+        }
+      },
+      "FieldLevelEncryptionId": {
+        "Required": false,
+        "Type": "String"
+      }
+    }
+  },
+  "CacheBehaviors": {
+    "Required": false,
+    "Type": "ObjectList",
+    "ObjectFields": {
+      "TargetOriginId": {
+        "Required": true,
+        "Type": "String"
+      },
+      "ForwardedValues": {
+        "Required": true,
+        "Type": "Object",
+        "ObjectFields": {
+          "QueryString": {
+            "Required": true,
+            "Type": "Boolean"
+          },
+          "Cookies": {
+            "Required": true,
+            "Type": "Object",
+            "ObjectFields": {
+              "Forward": {
+                "Required": true,
+                "Type": "String"
+              },
+              "WhitelistedNames": {
+                "Required": false,
+                "Type": "StringList"
+              }
+            }
+          },
+          "Headers": {
+            "Required": false,
+            "Type": "StringList"
+          },
+          "QueryStringCacheKeys": {
+            "Required": false,
+            "Type": "StringList"
+          }
+        }
+      },
+      "TrustedSigners": {
+        "Required": true,
+        "Type": "StringList"
+      },
+      "ViewerProtocolPolicy": {
+        "Required": true,
+        "Type": "String"
+      },
+      "MinTTL": {
+        "Required": true,
+        "Type": "Integer"
+      },
+      "AllowedMethods": {
+        "Required": false,
+        "Type": "StringList"
+      },
+      "CachedMethods": {
+        "Required": false,
+        "Type": "StringList"
+      },
+      "SmoothStreaming": {
+        "Required": false,
+        "Type": "Boolean"
+      },
+      "DefaultTTL": {
+        "Required": false,
+        "Type": "Integer"
+      },
+      "MaxTTL": {
+        "Required": false,
+        "Type": "Integer"
+      },
+      "Compress": {
+        "Required": false,
+        "Type": "Boolean"
+      },
+      "LambdaFunctionAssociations": {
+        "Required": false,
+        "Type": "ObjectList",
+        "ObjectFields": {
+          "LambdaFunctionARN": {
+            "Required": true,
+            "Type": "String"
+          },
+          "EventType": {
+            "Required": true,
+            "Type": "String"
+          },
+          "IncludeBody": {
+            "Required": false,
+            "Type": "Boolean"
+          }
+        }
+      },
+      "FieldLevelEncryptionId": {
+        "Required": false,
+        "Type": "String"
+      }
+    }
+  },
+  "CustomErrorResponses": {
+    "Required": false,
+    "Type": "ObjectList",
+    "ObjectFields": {
+      "ErrorCode": {
+        "Required": true,
+        "Type": "Integer"
+      },
+      "ResponsePagePath": {
+        "Required": false,
+        "Type": "String"
+      },
+      "ResponseCode": {
+        "Required": false,
+        "Type": "String"
+      },
+      "ErrorCachingMinTTL": {
+        "Required": false,
+        "Type": "Integer"
+      }
+    }
+  },
+  "Comment": {
+    "Required": true,
+    "Type": "String"
+  },
+  "Logging": {
+    "Required": false,
+    "Type": "Object",
+    "ObjectFields": {
+      "Enabled": {
+        "Required": true,
+        "Type": "Boolean"
+      },
+      "IncludeCookies": {
+        "Required": true,
+        "Type": "Boolean"
+      },
+      "Bucket": {
+        "Required": true,
+        "Type": "String"
+      },
+      "Prefix": {
+        "Required": true,
+        "Type": "String"
+      }
+    }
+  },
+  "PriceClass": {
+    "Required": true,
+    "Type": "String"
+  },
+  "Enabled": {
+    "Required": true,
+    "Type": "Boolean"
+  },
+  "ViewerCertificate": {
+    "Required": false,
+    "Type": "Object",
+    "ObjectFields": {
+      "CloudFrontDefaultCertificate": {
+        "Required": false,
+        "Type": "Boolean"
+      },
+      "IAMCertificateId": {
+        "Required": false,
+        "Type": "String"
+      },
+      "ACMCertificateArn": {
+        "Required": false,
+        "Type": "String"
+      },
+      "SSLSupportMethod": {
+        "Required": false,
+        "Type": "String"
+      },
+      "MinimumProtocolVersion": {
+        "Required": false,
+        "Type": "String"
+      },
+      "Certificate": {
+        "Required": false,
+        "Type": "String"
+      }
+    }
+  },
+  "Restrictions": {
+    "Required": false,
+    "Type": "Object",
+    "ObjectFields": {
+      "GeoRestriction": {
+        "Required": true,
+        "Type": "Object",
+        "ObjectFields": {
+          "RestrictionType": {
+            "Required": true,
+            "Type": "String"
+          }
+        }
+      }
+    }
+  },
+  "WebACLId": {
+    "Required": false,
+    "Type": "String"
+  },
+  "HttpVersion": {
+    "Required": false,
+    "Type": "String"
+  },
+  "IsIPV6Enabled": {
+    "Required": false,
+    "Type": "Boolean"
+  }
+}

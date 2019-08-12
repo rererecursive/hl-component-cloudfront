@@ -31,5 +31,7 @@ CfhighlanderTemplate do
 
   end
 
+  LambdaFunctions 'cloudfront_functions'
+
 
 end
