@@ -47,7 +47,7 @@ behaviours:
   #     TargetOriginId: s3bucket
   #     ForwardedValues:
   #       Cookies:
-  #         Forward: none
+  #         Forward: nondefaultcachebehaviours
   #       QueryString: false
   #     # allow-all | redirect-to-https | https-only
   #     ViewerProtocolPolicy: redirect-to-https
@@ -59,3 +59,11 @@ behaviours:
 # logs:
 #   bucket: mybucket.com
 #   prefix: mysite
+
+# aliases:
+#   - '*.${DnsDomain}'
+#   - ['*.${ProdDnsDomain}', { 'ProdDnsDomain': { 'Fn::If': ['IsDevEnv', 'approach.app', 'AWS::NoValue'] } } ]
+
+
+
+#Dimensions: [ { Name: 'Endpoint', Value: { 'Fn::Sub': ['${endpoint}', {'env': { Ref: 'EnvironmentName' } } ] } } ]
